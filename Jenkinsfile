@@ -13,7 +13,7 @@ stages {
   }
   steps {
     dir('/mnt/project') {
-      sh 'rm -rf *'
+      sh 'sudo rm -rf *'
       checkout scm
     }
     }
@@ -24,7 +24,7 @@ stages {
   }
   steps {
     dir('/mnt/project/') {
-       sh 'rm -rf /root/.m2/repository'
+       sh 'sudo rm -rf /root/.m2/repository'
        sh 'mvn clean install'
     }
   }
@@ -35,7 +35,7 @@ stages {
       }
    steps {
       dir('/mnt/jars') {
-         sh 'cp -r /mnt/project/target/*.jar .'
+         sh 'sudo cp -r /mnt/project/target/*.jar .'
       }
    }
    }
