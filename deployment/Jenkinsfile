@@ -21,6 +21,7 @@ stages {
   }
   steps {
     dir('/mnt/kubernetes') {
+      sh 'cp -r /mnt/jars/*.jar .'
       sh ' sudo docker build -t kshiteejjain84/myjdk:latest .'
     }
   }
