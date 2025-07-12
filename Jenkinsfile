@@ -23,9 +23,22 @@ stages {
     label 'built-in'
   }
   steps {
-    dir('/mnt/project/')
+    dir('/mnt/project/') {
+       sh 'rm -rf /root/.m2/repository'
+       sh 'mvn clean install'
+    }
   }
   }
+   stage ('copy jar file to jar folder') {
+      agent {
+         label 'built-in'
+      }
+   steps {
+      dir('/mnt/jars') {
+         sh 'cp -r /mnt/project/target/*.jar .'
+      }
+   }
+   }
 }
 }
 
