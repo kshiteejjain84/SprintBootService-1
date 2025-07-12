@@ -3,4 +3,4 @@ MAINTAINER kshiteej
 WORKDIR /app
 COPY *.jar /
 EXPOSE 8080
-ENTRYPOINT java -jar *.jar
+ENTRYPOINT ["java", "-jar", "*.jar"]
