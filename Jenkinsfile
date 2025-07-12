@@ -1,0 +1,6 @@
+pipeline{
+agent none
+options {
+  
+}
+}
