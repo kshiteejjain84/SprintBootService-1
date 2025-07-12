@@ -47,8 +47,12 @@ stages {
   steps {
     dir('/mnt/kubernetes') {
       sh '''
+         sudo kubectl delete -f deployment.yaml --ignore-not-found=true
+         sudo kubectl delete -f service.yaml --ignore-not-found=true
          sudo kubectl apply -f deployment.yaml
          sudo kubectl apply -f service.yaml
+         sudo kubectl get pods
+         sudo kubectl get service
          '''
     }
   }
