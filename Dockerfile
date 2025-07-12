@@ -1,6 +1,7 @@
 FROM openjdk:17
 MAINTAINER kshiteej
 WORKDIR /app
-COPY *.jar /
+COPY *.jar /app
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "*.jar"]
+ENTRYPOINT sh -c 'java -jar /app/*.jar'
+
