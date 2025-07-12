@@ -21,7 +21,34 @@ stages {
   }
   steps {
     dir('/mnt/kubernetes') {
-      sh ' docker build -t kshiteejjain84/myapp
+      sh ' docker build -t kshiteejjain84/myjdk:latest .'
+    }
+  }
+  }
+  stage('push docker image to docker registry') {
+  agent {
+    label 'built-in'
+  }
+   steps {
+     dir('/mnt/kubernetes') {
+       sh '''
+          docker login -u kshiteejjain84 -p KDSgroup@131120
+          docker push kshiteejjain84/myjdk:latest
+          docker logout
+          '''
+     }
+   }
+  }
+  stage('deploy pod and services') {
+    agent {
+      label 'built-in'
+    }
+  steps {
+    dir('/mnt/kubernetes') {
+      sh '''
+         kubectl apply -f deployment.yaml
+         kubectl apply -f service.yaml
+         '''
     }
   }
   }
