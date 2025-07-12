@@ -21,7 +21,7 @@ stages {
   }
   steps {
     dir('/mnt/kubernetes') {
-      sh ' docker build -t kshiteejjain84/myjdk:latest .'
+      sh ' sudo docker build -t kshiteejjain84/myjdk:latest .'
     }
   }
   }
@@ -32,9 +32,9 @@ stages {
    steps {
      dir('/mnt/kubernetes') {
        sh '''
-          docker login -u kshiteejjain84 -p KDSgroup@131120
-          docker push kshiteejjain84/myjdk:latest
-          docker logout
+          sudo docker login -u kshiteejjain84 -p KDSgroup@131120
+          sudo docker push kshiteejjain84/myjdk:latest
+          sudo docker logout
           '''
      }
    }
@@ -46,8 +46,8 @@ stages {
   steps {
     dir('/mnt/kubernetes') {
       sh '''
-         kubectl apply -f deployment.yaml
-         kubectl apply -f service.yaml
+         sudo kubectl apply -f deployment.yaml
+         sudo kubectl apply -f service.yaml
          '''
     }
   }
