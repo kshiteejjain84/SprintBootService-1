@@ -1,6 +1,6 @@
 FROM openjdk:17
 MAINTAINER kshiteej
-COPY *.jar /app
 WORKDIR /app
+COPY *.jar /
 EXPOSE 8080
 ENTRYPOINT java -jar *.jar
